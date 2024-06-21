@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 14/06/2024 às 17:45
+-- Tempo de geração: 21/06/2024 às 17:43
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -89,14 +89,14 @@ CREATE TABLE `produtor` (
 --
 
 INSERT INTO `produtor` (`produtorid`, `nomeProdutor`, `moradaProdutor`, `telefone`, `email`, `codregiao`) VALUES
-(1, 'Qt. Vallado', 'Régua', '254323147', 'vallado@gmail.telepac.pt', 1),
-(2, 'Finagra', 'Reguengos', '266509270', 'esporao@esporao.com', 2),
-(3, 'Brayan', 'quarta', '254323865', 'brayan@gmail.telepac.pt', 3),
-(4, 'maya', 'Piraporinha', '252343147', 'maya@gmail.com.br', 4),
-(5, 'prayan', 'jundiai', '254603147', 'prayan@gmail.telepac.pt', 5),
-(6, 'Alameda', 'caetano', '037423147', 'alameda@gmail.com.br', 6),
-(7, 'Daniel', 'kelvin', '282749147', 'vdaniel@gmail.com.br', 7),
-(8, 'Juan', 'grond', '254999767', 'juan@gmail.com.br', 8);
+(1, 'Qt. Vallado', 'Régua', '+55 11254323147', 'vallado@gmail.telepac.pt', 1),
+(2, 'Finagra', 'Reguengos', '+55 11266509270', 'esporao@esporao.com', 2),
+(3, 'Brayan', 'quarta', '+55 11254323865', 'brayan@gmail.telepac.pt', 3),
+(4, 'maya', 'Piraporinha', '+55 11252343147', 'maya@gmail.com.br', 4),
+(5, 'prayan', 'jundiai', '+55 11254603147', 'prayan@gmail.telepac.pt', 5),
+(6, 'Alameda', 'caetano', '+55 11037423147', 'alameda@gmail.com.br', 6),
+(7, 'Daniel', 'kelvin', '+55 11282749147', 'vdaniel@gmail.com.br', 7),
+(8, 'Juan', 'grond', '+55 11254999767', 'juan@gmail.com.br', 8);
 
 -- --------------------------------------------------------
 
@@ -209,7 +209,7 @@ ALTER TABLE `produtor`
 -- AUTO_INCREMENT de tabela `regiao`
 --
 ALTER TABLE `regiao`
-  MODIFY `idregiao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `idregiao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de tabela `vinho`
