@@ -1,0 +1,103 @@
+CREATE TABLE Fiador (
+Codfiador int(11) PRIMARY KEY auto_increment,
+Rg varchar(27),
+Email varchar(255) unique,
+Cpf int(11) unique,
+Nome varchar(255),
+Data_nasc date,
+Tele int(11)
+)
+
+CREATE TABLE Proprietario (
+Codproprietario int(11) PRIMARY KEY auto_increment,
+nome varchar(255),
+email varchar(255) unique,
+tele int(11),
+data_nasc date,
+cpf int(11) unique,
+banco varchar(255),
+conta varchar(255),
+pix varchar(255),
+agencia varchar(255)
+)
+
+CREATE TABLE Endereço (
+Codendereco int(11) PRIMARY KEY auto_increment,
+Rua varchar(255),
+Numero int(255),
+Complemento int(255),
+Bairro varchar(255),
+Cidade varchar(255),
+Estado varchar(255),
+Cep int(8),
+Codproprietario int(11),
+Codfiador int(11)
+FOREIGN KEY(Codproprietario) REFERENCES Proprietario (Codproprietario)
+FOREIGN KEY(Codfiador) REFERENCES Fiador (Codfiador)
+)
+
+CREATE TABLE Corretor (
+CodCorretor int(11) PRIMARY KEY auto_increment,
+Nome varchar(255),
+Data_nasc date,
+Email varchar(255) unique,
+Tele int(11),
+Cpf int(11) unique,
+)
+
+CREATE TABLE Inquilino (
+Codinquilino int(11) PRIMARY KEY auto increment,
+Rg varchar(27),
+Cpf int(11),
+Email Texto(1),
+Nome Texto(1),
+Data_nasc Texto(1),
+Tele Texto(1),
+Codfiador int(11),
+CodCorretor int(11),
+FOREIGN KEY(Codfiador) REFERENCES Fiador (Codfiador),
+FOREIGN KEY(CodCorretor) REFERENCES Corretor (CodCorretor)
+)
+
+CREATE TABLE Imovel (
+Codimovel int(11) PRIMARY KEY auto increment,
+Area Int(10000),
+Num_banheiro int(100),
+Num_suite int(100),
+Num_comodo int(100),
+Quintal int(100),
+Num garagem int(100),
+Andares int(100),
+Num_quarto int(100),
+Alugado bit,
+lavanderia int(100),
+Piscina bit,
+Codendereco int(11),
+Codproprietario int(11),
+FOREIGN KEY(Codendereco) REFERENCES Endereço (Codendereco),
+FOREIGN KEY(Codproprietario) REFERENCES Proprietario (Codproprietario)
+)
+
+CREATE TABLE Aluguel (
+CodAluguel int(11) PRIMARY KEY auto_increment,
+Datainicio date,
+DataVenc date,
+Datafim date,
+Desc varchar(255),
+CodCorretor int(11),
+Codimovel int(11),
+Codinquilino int(11),
+FOREIGN KEY(CodCorretor) REFERENCES Corretor (CodCorretor),
+FOREIGN KEY(Codimovel) REFERENCES Imovel (Codimovel),
+FOREIGN KEY(Codinquilino) REFERENCES Inquilino (Codinquilino)
+)
+
+CREATE TABLE Midias (
+Codmidia int(11) PRIMARY KEY auto increment,
+Midia varchar(255),
+Codimovel int(11),
+FOREIGN KEY(Codimovel) REFERENCES Imovel (Codimovel)
+)
+
+ALTER TABLE Endereço ADD FOREIGN KEY(Codproprietario) REFERENCES Proprietario (Codproprietario)
+ALTER TABLE Endereço ADD FOREIGN KEY(Codfiador) REFERENCES Fiador (Codfiador)
