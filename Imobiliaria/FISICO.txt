@@ -1,77 +1,79 @@
-CREATE TABLE Fiador (
-Codfiador int(11) PRIMARY KEY auto_increment,
-Rg varchar(27),
-Email varchar(255) unique,
-Cpf int(11) unique,
-Nome varchar(255),
-Data_nasc date,
-Tele int(11)
-)
-
 CREATE TABLE Proprietario (
 Codproprietario int(11) PRIMARY KEY auto_increment,
-nome varchar(255),
-email varchar(255) unique,
-tele int(11),
-data_nasc date,
-cpf int(11) unique,
-banco varchar(255),
-conta varchar(255),
-pix varchar(255),
-agencia varchar(255)
+nome varchar(255) not null,
+email varchar(255) unique not null,
+tele int(11) not null,
+data_nasc date not null,
+cpf int(11) unique not null,
+banco varchar(255) not null,
+conta varchar(255) not null,
+pix varchar(255) not null,
+agencia varchar(255) not null
 )
 
-CREATE TABLE Endereço (
+CREATE TABLE Endereco (
 Codendereco int(11) PRIMARY KEY auto_increment,
-Rua varchar(255),
-Numero int(255),
+Rua varchar(255) not null,
+Numero int(255) not null,
 Complemento int(255),
-Bairro varchar(255),
-Cidade varchar(255),
-Estado varchar(255),
-Cep int(8),
-Codproprietario int(11),
-Codfiador int(11)
-FOREIGN KEY(Codproprietario) REFERENCES Proprietario (Codproprietario)
-FOREIGN KEY(Codfiador) REFERENCES Fiador (Codfiador)
+Bairro varchar(255) not null,
+Cidade varchar(255) not null,
+Estado varchar(255) not null,
+Cep int(8) not null,
+)
+
+CREATE TABLE Fiador (
+Codfiador int(11) PRIMARY KEY auto_increment,
+Rg varchar(27) not null,
+Email varchar(255) unique not null,
+Cpf int(11) unique not null,
+Nome varchar(255) not null,
+Data_nasc date not null,
+Tele int(11) not null,
+Codendereco int(11),
+FOREIGN KEY(Codendereco) REFERENCES Endereco (Codendereco)
 )
 
 CREATE TABLE Corretor (
 CodCorretor int(11) PRIMARY KEY auto_increment,
-Nome varchar(255),
-Data_nasc date,
-Email varchar(255) unique,
-Tele int(11),
-Cpf int(11) unique,
+Nome varchar(255) not null,
+Data_nasc date not null,
+Email varchar(255) unique not null,
+Tele int(11) not null,
+Cpf int(11) unique not null,
+Codendereco int(11),
+FOREIGN KEY(Codendereco) REFERENCES Endereco (Codendereco)
 )
 
 CREATE TABLE Inquilino (
 Codinquilino int(11) PRIMARY KEY auto increment,
-Rg varchar(27),
-Cpf int(11),
-Email Texto(1),
-Nome Texto(1),
-Data_nasc Texto(1),
-Tele Texto(1),
+Rg varchar(27) not null,
+Cpf int(11) not null unique,
+Email Texto(1) not null,
+Nome Texto(1) not null,
+Data_nasc Texto(1) not null,
+Tele Texto(1) not null,
 Codfiador int(11),
 CodCorretor int(11),
+Codendereco int(11),
+FOREIGN KEY(Codendereco) REFERENCES Endereco (Codendereco),
 FOREIGN KEY(Codfiador) REFERENCES Fiador (Codfiador),
 FOREIGN KEY(CodCorretor) REFERENCES Corretor (CodCorretor)
 )
 
 CREATE TABLE Imovel (
 Codimovel int(11) PRIMARY KEY auto increment,
-Area Int(10000),
-Num_banheiro int(100),
-Num_suite int(100),
-Num_comodo int(100),
-Quintal int(100),
-Num garagem int(100),
-Andares int(100),
-Num_quarto int(100),
-Alugado bit,
-lavanderia int(100),
-Piscina bit,
+Area Int(11) not null,
+Num_banheiro int(11) not null,
+Num_suite int(11) not null,
+Num_comodo int(11) not null,
+Quintal int(11) not null,
+Num garagem int(11) not null,
+Andares int(11) not null,
+Num_quarto int(11) not null,
+Alugado bit not null,
+lavanderia int(11) not null,
+Piscina bit not null,
 Codendereco int(11),
 Codproprietario int(11),
 FOREIGN KEY(Codendereco) REFERENCES Endereço (Codendereco),
@@ -80,10 +82,11 @@ FOREIGN KEY(Codproprietario) REFERENCES Proprietario (Codproprietario)
 
 CREATE TABLE Aluguel (
 CodAluguel int(11) PRIMARY KEY auto_increment,
-Datainicio date,
-DataVenc date,
-Datafim date,
-Desc varchar(255),
+Datainicio date not null,
+DataVenc date not null,
+Datafim date not null,
+Desc varchar(255) not null,
+Valor decimal(11,2)  not null,
 CodCorretor int(11),
 Codimovel int(11),
 Codinquilino int(11),
@@ -94,10 +97,7 @@ FOREIGN KEY(Codinquilino) REFERENCES Inquilino (Codinquilino)
 
 CREATE TABLE Midias (
 Codmidia int(11) PRIMARY KEY auto increment,
-Midia varchar(255),
+Midia varchar(255) not null,
 Codimovel int(11),
 FOREIGN KEY(Codimovel) REFERENCES Imovel (Codimovel)
 )
-
-ALTER TABLE Endereço ADD FOREIGN KEY(Codproprietario) REFERENCES Proprietario (Codproprietario)
-ALTER TABLE Endereço ADD FOREIGN KEY(Codfiador) REFERENCES Fiador (Codfiador)
