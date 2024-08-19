@@ -1,0 +1,21 @@
+INSERT INTO endereço VALUES(1,"pindamonhangaba","gilberto","01001-000","dr evaristo","São Paulo","",11);
+INSERT INTO endereço VALUES(2,"ribeirão pires","vila nova","01901-024","rosario","São Paulo","",106);
+INSERT INTO endereço VALUES(3,"Não-me-toque","Santa Isabel","01001-245","Azaleas","Rio grande do Sul","",110);
+INSERT INTO endereço VALUES(4,"Anta gorda","Ubiraja","01001-987","Jasmins","Acre","",211);
+INSERT INTO endereço VALUES(5,"Curralinho","Novo Colorado","01001-111","Hortensias","Roraima","",69);
+INSERT INTO endereço VALUES(6,"passa e fica","Popular","12345-000","Camelias","Pará","",2);
+INSERT INTO endereço VALUES(7,"Chupinguaia","Porto","67890-000","Topazios","São Paulo","",56);
+INSERT INTO endereço VALUES(8,"Fruta de leite","Quilombo","28403-000","rosas","São Paulo","",77);
+INSERT INTO endereço VALUES(9,"Feliz natal","Ribeirão do lipa","00000-000","Esmeraldas","Rio de Janeiro","",99);
+INSERT INTO endereço VALUES(10,"Sem peixe","Sucuri","01021-222","Diamantes","Rio de janeiro","",14);
+
+INSERT INTO proprietario VALUES(1,"bagos@gmail.com","374823748",11/8/1999,"17233-2362","Joao","",11);
+INSERT INTO proprietario VALUES(2,"bungas@hotmail.com","7389278956",10/28/1989,"21389-2134","Paulinho","",106);
+INSERT INTO proprietario VALUES(3,"aaaaaaaaa@email.com","83784932",9/10/1988,"42387-8734","Bruno","",110);
+INSERT INTO proprietario VALUES(4,"olhoslaser@gmail.com","783758236",8/13/2002,"34783-7837","Malaquias","",211);
+INSERT INTO proprietario VALUES(5,"popeye@email.com","7483758934",11/30/2001,"89324-7439","Kevyn","",69);
+INSERT INTO proprietario VALUES(6,"magico@email.com","4637567543",12/31/1980,"54367-2832","Caspirro","",2);
+INSERT INTO proprietario VALUES(7,"bobesponja@hotmail.com","743678644",2/27/1990,"37824-7382","Bryan","",56);
+INSERT INTO proprietario VALUES(8,"peixe@outlook.com","2382778734",9/21/1999,"32787-2364","Marcos","",77);
+INSERT INTO proprietario VALUES(9,"lalala@outlook.com","4237847823",7/19/2003,"37283-3427","Batata","",99);
+INSERT INTO proprietario VALUES(10,"cthullu@outlook.com","3874823722",5/11/2000,"94722-3462","Bungas","",14);
