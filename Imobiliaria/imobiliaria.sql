@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 26-Ago-2024 às 14:09
+-- Tempo de geração: 02-Set-2024 às 14:06
 -- Versão do servidor: 10.4.27-MariaDB
 -- versão do PHP: 8.0.25
 
@@ -75,7 +75,7 @@ CREATE TABLE `corretor` (
 --
 
 INSERT INTO `corretor` (`idCorretor`, `email`, `imobiliaria`, `telefone`, `nome`) VALUES
-(1, 'rafael.martins@imobiliariaabc.com', 'Imobiliária ABC', '(11) 91234-5678', 'Rafael Martins'),
+(1, 'RafaelMartins@gmail.com', 'Imobiliária ABC', '(11) 91234-5678', 'Rafael Martins'),
 (2, 'juliana.souza@imobiliariaxyz.com', 'Imobiliária XYZ', '(21) 99876-5432', 'Juliana Souza'),
 (3, 'paulo.silva@imobiliariacosta.com', 'Imobiliária Costa', '(31) 91234-5678', 'Paulo Silva'),
 (4, 'ana.fernandes@imobiliariabrasil.com', 'Imobiliária Brasil', '(41) 97654-3210', 'Ana Fernandes'),
@@ -196,24 +196,28 @@ CREATE TABLE `imovel` (
   `disponivel` bit(1) NOT NULL,
   `piscina` int(10) DEFAULT NULL,
   `idendereço` int(30) DEFAULT NULL,
-  `idproprietario` int(20) DEFAULT NULL
+  `idproprietario` int(20) DEFAULT NULL,
+  `lavanderia` bit(1) NOT NULL,
+  `ValorAluguel` decimal(10,2) DEFAULT NULL,
+  `bairro` varchar(100) DEFAULT NULL,
+  `cidade` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Extraindo dados da tabela `imovel`
 --
 
-INSERT INTO `imovel` (`idimovel`, `qntBanheiros`, `suites`, `tipo`, `qntComodos`, `qntGaragem`, `disponivel`, `piscina`, `idendereço`, `idproprietario`) VALUES
-(1, 2, 1, 'Apartamento', 5, 1, b'1', 0, 1, 1),
-(2, 3, 2, 'Casa', 8, 2, b'1', 1, 2, 2),
-(3, 1, 0, 'Kitnet', 2, 0, b'1', 0, 3, 3),
-(4, 4, 2, 'Cobertura', 10, 3, b'0', 1, 4, 4),
-(5, 2, 1, 'Sobrado', 6, 1, b'1', 0, 5, 5),
-(6, 3, 2, 'Casa', 7, 2, b'0', 1, 6, 6),
-(7, 1, 0, 'Apartamento', 3, 1, b'1', 0, 7, 7),
-(8, 5, 3, 'Mansão', 12, 4, b'1', 1, 8, 8),
-(9, 2, 1, 'Chácara', 6, 2, b'1', 1, 9, 9),
-(10, 1, 0, 'Loft', 3, 1, b'0', 0, 10, 10);
+INSERT INTO `imovel` (`idimovel`, `qntBanheiros`, `suites`, `tipo`, `qntComodos`, `qntGaragem`, `disponivel`, `piscina`, `idendereço`, `idproprietario`, `lavanderia`, `ValorAluguel`, `bairro`, `cidade`) VALUES
+(1, 2, 1, 'Apartamento', 5, 1, b'1', 0, 1, 1, b'1', '1200.00', 'Centro', 'São Paulo'),
+(2, 3, 2, 'Casa', 8, 2, b'1', 1, 2, 2, b'1', '1500.00', 'Jardim Paulista', 'São Paulo'),
+(3, 1, 0, 'Kitnet', 2, 0, b'1', 0, 3, 3, b'1', '1800.00', 'Vila Mariana', 'São Paulo'),
+(4, 4, 2, 'Cobertura', 10, 3, b'0', 1, 4, 4, b'1', '2000.00', 'Vila Madalena', 'São Paulo'),
+(5, 2, 1, 'Sobrado', 6, 1, b'1', 0, 5, 5, b'0', '2200.00', 'Brooklin', 'São Paulo'),
+(6, 3, 2, 'Casa', 7, 2, b'0', 1, 6, 6, b'0', '2500.00', 'Pinheiros', 'São Paulo'),
+(7, 1, 0, 'Apartamento', 3, 1, b'1', 0, 7, 7, b'0', '2700.00', 'Liberdade', 'Mauá'),
+(8, 5, 3, 'Mansão', 12, 4, b'1', 1, 8, 8, b'0', '3000.00', 'Alto da Lapa', 'Mauá'),
+(9, 2, 1, 'Chácara', 6, 2, b'1', 1, 9, 9, b'0', '3300.00', 'Itaim Bibi', 'Mauá'),
+(10, 1, 0, 'Loft', 3, 1, b'0', 0, 10, 10, b'0', '3500.00', 'Jardim Paulistano', 'Mauá');
 
 -- --------------------------------------------------------
 
@@ -227,24 +231,27 @@ CREATE TABLE `inquilino` (
   `telefone` varchar(15) NOT NULL,
   `cpf` varchar(15) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `idfiador` int(10) DEFAULT NULL
+  `idfiador` int(10) DEFAULT NULL,
+  `salario` decimal(7,2) NOT NULL,
+  `datanasc` date DEFAULT NULL,
+  `nome` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Extraindo dados da tabela `inquilino`
 --
 
-INSERT INTO `inquilino` (`idinquilino`, `rg`, `telefone`, `cpf`, `email`, `idfiador`) VALUES
-(1, 'MG-12.345.678', '(11) 91234-5678', '123.456.789-01', 'joao.silva@example.com', 1),
-(2, 'RJ-98.765.432', '(21) 99876-5432', '987.654.321-02', 'maria.oliveira@example.com', 2),
-(3, 'SP-45.678.901', '(31) 91234-5678', '456.789.123-03', 'carlos.fernandes@example.com', 3),
-(4, 'PR-34.567.890', '(41) 97654-3210', '789.123.456-04', 'ana.melo@example.com', 4),
-(5, 'RS-56.789.012', '(51) 92345-6789', '321.654.987-05', 'paulo.santos@example.com', 5),
-(6, 'BA-67.890.123', '(61) 98765-4321', '654.321.987-06', 'lucia.pereira@example.com', 6),
-(7, 'DF-78.901.234', '(71) 93456-7890', '987.123.654-07', 'roberto.lima@example.com', 7),
-(8, 'CE-89.012.345', '(81) 94567-8901', '123.789.456-08', 'fernanda.souza@example.com', 8),
-(9, 'PE-90.123.456', '(91) 95678-9012', '456.321.789-09', 'ricardo.martins@example.com', 9),
-(10, 'AM-01.234.567', '(31) 96789-0123', '789.456.123-10', 'patricia.almeida@example.com', 10);
+INSERT INTO `inquilino` (`idinquilino`, `rg`, `telefone`, `cpf`, `email`, `idfiador`, `salario`, `datanasc`, `nome`) VALUES
+(1, 'MG-12.345.678', '(11) 91234-5678', '123.456.789-01', 'joao.silva@example.com', 1, '2500.00', '1981-12-21', 'Carlos Silva'),
+(2, 'RJ-98.765.432', '(21) 99876-5432', '987.654.321-02', 'maria.oliveira@example.com', 2, '1500.00', '1974-02-14', 'Ana Costa'),
+(3, 'SP-45.678.901', '(31) 91234-5678', '456.789.123-03', 'carlos.fernandes@example.com', 3, '4000.00', '1960-06-02', 'Roberto Souza'),
+(4, 'PR-34.567.890', '(41) 97654-3210', '789.123.456-04', 'ana.melo@example.com', 4, '3200.00', '1985-05-15', 'Mariana Lima'),
+(5, 'RS-56.789.012', '(51) 92345-6789', '321.654.987-05', 'paulo.santos@example.com', 5, '2800.00', '1990-07-23', 'João Pereira'),
+(6, 'BA-67.890.123', '(61) 98765-4321', '654.321.987-06', 'lucia.pereira@example.com', 6, '3500.00', '1978-11-30', 'Fernanda Alves'),
+(7, 'DF-78.901.234', '(71) 93456-7890', '987.123.654-07', 'roberto.lima@example.com', 7, '4200.00', '1983-03-17', 'Pedro Oliveira'),
+(8, 'CE-89.012.345', '(81) 94567-8901', '123.789.456-08', 'fernanda.souza@example.com', 8, '3000.00', '1992-08-25', 'Tatiane Gomes'),
+(9, 'PE-90.123.456', '(91) 95678-9012', '456.321.789-09', 'ricardo.martins@example.com', 9, '4500.00', '1967-09-12', 'Lucas Martins'),
+(10, 'AM-01.234.567', '(31) 96789-0123', '789.456.123-10', 'patricia.almeida@example.com', 10, '3800.00', '1988-10-19', 'Juliana Rocha');
 
 -- --------------------------------------------------------
 
@@ -270,16 +277,16 @@ CREATE TABLE `proprietario` (
 --
 
 INSERT INTO `proprietario` (`idproprietario`, `email`, `cpf`, `nasc`, `telefone`, `nome`, `banco`, `agencia`, `conta`, `pix`) VALUES
-(1, 'joao.silva@example.com', '123.456.789-00', '1980-05-15', '(11) 91234-5678', 'João Silva', 'Banco do Brasil', '1234', '56789-0', 'joao.silva@example.com'),
-(2, 'maria.souza@example.com', '987.654.321-00', '1990-07-22', '(21) 99876-5432', 'Maria Souza', 'Caixa Econômica', '5678', '12345-6', 'maria.souza@example.com'),
-(3, 'carlos.pereira@example.com', '456.789.123-00', '1985-03-10', '(31) 91234-5678', 'Carlos Pereira', 'Itaú', '9101', '23456-7', 'carlos.pereira@example.com'),
-(4, 'ana.lima@example.com', '789.123.456-00', '1992-11-30', '(41) 97654-3210', 'Ana Lima', 'Bradesco', '1122', '34567-8', 'ana.lima@example.com'),
-(5, 'pedro.almeida@example.com', '321.654.987-00', '1988-01-25', '(51) 92345-6789', 'Pedro Almeida', 'Santander', '3344', '45678-9', 'pedro.almeida@example.com'),
-(6, 'lucia.santos@example.com', '654.321.987-00', '1975-08-05', '(61) 98765-4321', 'Lúcia Santos', 'Banco do Brasil', '5566', '56789-0', 'lucia.santos@example.com'),
-(7, 'roberto.costa@example.com', '987.123.654-00', '1995-09-12', '(71) 93456-7890', 'Roberto Costa', 'Caixa Econômica', '7788', '67890-1', 'roberto.costa@example.com'),
-(8, 'claudia.melo@example.com', '123.789.456-00', '1982-04-18', '(81) 94567-8901', 'Cláudia Melo', 'Itaú', '9900', '78901-2', 'claudia.melo@example.com'),
-(9, 'fernando.gomes@example.com', '456.321.789-00', '1978-12-20', '(91) 95678-9012', 'Fernando Gomes', 'Bradesco', '1123', '89012-3', 'fernando.gomes@example.com'),
-(10, 'patricia.oliveira@example.com', '789.456.123-00', '1987-06-15', '(31) 96789-0123', 'Patrícia Oliveira', 'Santander', '3345', '90123-4', 'patricia.oliveira@example.com');
+(1, 'joao.silva@example.com', '123.456.789-00', '1980-05-15', '111) 91234-5678', 'João Silva', 'Banco do Brasil', '1234', '56789-0', 'joao.silva@example.com'),
+(2, 'maria.souza@example.com', '987.654.321-00', '1990-07-22', '111) 99876-5432', 'Maria Souza', 'Caixa Econômica', '5678', '12345-6', 'maria.souza@example.com'),
+(3, 'carlos.pereira@example.com', '456.789.123-00', '1985-03-10', '111) 91234-5678', 'Carlos Pereira', 'Itaú', '9101', '23456-7', 'carlos.pereira@example.com'),
+(4, 'ana.lima@example.com', '789.123.456-00', '1992-11-30', '111) 97654-3210', 'Ana Lima', 'Bradesco', '1122', '34567-8', 'ana.lima@example.com'),
+(5, 'pedro.almeida@example.com', '321.654.987-00', '1988-01-25', '111) 92345-6789', 'Pedro Almeida', 'Santander', '3344', '45678-9', 'pedro.almeida@example.com'),
+(6, 'lucia.santos@example.com', '654.321.987-00', '1975-08-05', '111) 98765-4321', 'Lúcia Santos', 'Banco do Brasil', '5566', '56789-0', 'lucia.santos@example.com'),
+(7, 'roberto.costa@example.com', '987.123.654-00', '1995-09-12', '111) 93456-7890', 'Roberto Costa', 'Caixa Econômica', '7788', '67890-1', 'roberto.costa@example.com'),
+(8, 'claudia.melo@example.com', '123.789.456-00', '1982-04-18', '111) 94567-8901', 'Cláudia Melo', 'Itaú', '9900', '78901-2', 'claudia.melo@example.com'),
+(9, 'fernando.gomes@example.com', '456.321.789-00', '1978-12-20', '111) 95678-9012', 'Fernando Gomes', 'Bradesco', '1123', '89012-3', 'fernando.gomes@example.com'),
+(10, 'patricia.oliveira@example.com', '789.456.123-00', '1987-06-15', '111) 96789-0123', 'Patrícia Oliveira', 'Santander', '3345', '90123-4', 'patricia.oliveira@example.com');
 
 --
 -- Índices para tabelas despejadas
